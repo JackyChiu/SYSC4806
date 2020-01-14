@@ -66,7 +66,7 @@ public class BuddyInfoTest {
         @SuppressWarnings("unchecked")
         List<BuddyInfo> results = q.getResultList();
         assertEquals(2, results.size());
-        assertEquals("non-cool",results.get(0).getName());
+        assertEquals("not-cool",results.get(0).getName());
         assertEquals("cool", results.get(1).getName());
 
         // Closing connection
