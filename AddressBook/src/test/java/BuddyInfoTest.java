@@ -36,7 +36,7 @@ public class BuddyInfoTest {
     }
 
     @Test
-    public void performJPA() {
+    public void persist() {
         BuddyInfo b1 = new BuddyInfo("cool", "613");
         b1.setId(1);
 
