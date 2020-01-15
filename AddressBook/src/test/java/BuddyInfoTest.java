@@ -36,7 +36,7 @@ public class BuddyInfoTest {
     }
 
     @Test
-    public void persist() {
+    public void testPersist() {
         BuddyInfo b1 = new BuddyInfo("cool", "613");
         b1.setId(1);
 
@@ -61,13 +61,13 @@ public class BuddyInfoTest {
         tx.commit();
 
         // Querying the contents of the database using JPQL query
-        Query q = em.createQuery("SELECT b FROM BuddyInfo b");
+        Query q = em.createQuery("SELECT b FROM BuddyInfo b ORDER BY b.id");
 
         @SuppressWarnings("unchecked")
         List<BuddyInfo> results = q.getResultList();
         assertEquals(2, results.size());
-        assertEquals("not-cool",results.get(0).getName());
-        assertEquals("cool", results.get(1).getName());
+        assertEquals("cool",results.get(0).getName());
+        assertEquals("not-cool", results.get(1).getName());
 
         // Closing connection
         em.close();

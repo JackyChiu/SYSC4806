@@ -36,7 +36,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void persist() {
+    public void testPersist() {
         BuddyInfo b1 = new BuddyInfo("cool", "613");
         b1.setId(1);
 
@@ -70,8 +70,12 @@ public class AddressBookTest {
         Query q = em.createQuery("SELECT ab FROM AddressBook ab");
 
         @SuppressWarnings("unchecked")
-        List<AddressBook> results = q.getResultList();
-        assertEquals(1, results.size());
+        AddressBook result = (AddressBook) q.getSingleResult();
+        assertEquals((Integer) 1, result.getId());
+        assertEquals(2, result.getBuddies().size());
+        assertEquals("cool", result.getBuddies().get(0).getName());
+        assertEquals("not-cool", result.getBuddies().get(1).getName());
+
 
         // Closing connection
         em.close();

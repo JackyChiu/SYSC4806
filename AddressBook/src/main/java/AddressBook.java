@@ -6,7 +6,7 @@ import java.util.*;
 public class AddressBook {
     @Id
     private Integer id;
-    private HashMap<String, BuddyInfo> buddies;
+    private Map<String, BuddyInfo> buddies;
 
     AddressBook() {
         this.buddies = new HashMap<String, BuddyInfo>();
