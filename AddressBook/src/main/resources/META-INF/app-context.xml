@@ -9,11 +9,26 @@
         <property name="listener">
             <ref bean="addressBookController"></ref>
         </property>
-
+        <property name="menus">
+            <list>
+                <ref bean="addressBookMenu"></ref>
+                <ref bean="buddyInfoMenu"></ref>
+            </list>
+        </property>
     </bean>
     <bean id="addressBookController" class="AddressBookController">
         <property name="view">
             <ref bean="addressBookView"></ref>
+        </property>
+    </bean>
+    <bean id="addressBookMenu" class="AddressBookMenu" init-method="init">
+        <property name="listener">
+            <ref bean="addressBookController"></ref>
+        </property>
+    </bean>
+    <bean id="buddyInfoMenu" class="BuddyInfoMenu" init-method="init">
+        <property name="listener">
+            <ref bean="addressBookController"></ref>
         </property>
     </bean>
 </beans>

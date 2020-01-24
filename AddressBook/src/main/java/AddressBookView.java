@@ -1,36 +1,18 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class AddressBookView extends JFrame {
     private ActionListener listener;
-
-    private JMenu addressBookMenu() {
-        JMenu menu = new JMenu("AddressBook");
-
-        JMenuItem create = new JMenuItem("Create");
-        create.addActionListener(this.listener);
-        menu.add(create);
-
-        JMenuItem display = new JMenuItem("Display");
-        display.addActionListener(this.listener);
-        menu.add(display);
-
-        return menu;
-    }
-
-    private JMenu buddyInfoMenu() {
-        JMenu menu = new JMenu("BuddyInfo");
-
-        JMenuItem create = new JMenuItem("Add");
-        create.addActionListener(this.listener);
-        menu.add(create);
-
-        return menu;
-    }
+    private ArrayList<JMenu> menus;
 
     public void setListener(ActionListener al) {
         this.listener = al;
+    }
+
+    public void setMenus(ArrayList<JMenu> menus) {
+        this.menus = menus;
     }
 
     public void showMessage(String msg) {
@@ -42,8 +24,11 @@ public class AddressBookView extends JFrame {
     }
 
     public void init() {
-        this.add(this.addressBookMenu());
-        this.add(this.buddyInfoMenu());
+        JMenuBar bar = new JMenuBar();
+        for (JMenu m: this.menus) {
+            bar.add(m);
+        }
+        setJMenuBar(bar);
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setSize(new Dimension(600, 400));
