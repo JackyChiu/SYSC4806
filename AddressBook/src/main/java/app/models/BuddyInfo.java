@@ -1,9 +1,6 @@
 package app.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -13,6 +10,8 @@ public class BuddyInfo implements Serializable {
     private Integer id;
     private String name;
     private String number;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private AddressBook addressBook;
 
     public BuddyInfo() {}
 
@@ -47,6 +46,14 @@ public class BuddyInfo implements Serializable {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public AddressBook getAddressBook() {
+        return addressBook;
+    }
+
+    public void setAddressBook(AddressBook addressBook) {
+        this.addressBook = addressBook;
     }
 
     public String toString() {

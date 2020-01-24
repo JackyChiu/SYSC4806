@@ -9,7 +9,7 @@ public class AddressBook implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
-    @OneToMany
+    @OneToMany(mappedBy = "addressBook", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Map<String, BuddyInfo> buddies;
 
     public AddressBook() {

@@ -18,38 +18,42 @@ public class MySpringApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(AddressBookRepository repository, BuddyInfoRepository respository2) {
+    public CommandLineRunner demo(BuddyInfoRepository repository, AddressBookRepository repository2) {
         return (args) -> {
             AddressBook addressBook = new AddressBook();
             BuddyInfo b1 = new BuddyInfo("buddy name", "613934584");
-            addressBook.addBuddy(b1);
+            b1.setAddressBook(addressBook);
             BuddyInfo b2 = new BuddyInfo("buddy2 name", "613934584");
-            addressBook.addBuddy(b2);
+            b2.setAddressBook(addressBook);
             BuddyInfo b3 = new BuddyInfo("buddy3 name", "613934584");
+            b3.setAddressBook(addressBook);
+
+            addressBook.addBuddy(b1);
+            addressBook.addBuddy(b2);
             addressBook.addBuddy(b3);
 
-            AddressBook addressBook2 = new AddressBook();
-            addressBook2.addBuddy(b1);
-
-            respository2.save(b1);
-            respository2.save(b2);
-            respository2.save(b3);
-
-            repository.save(addressBook);
-            repository.save(addressBook2);
+            repository2.save(addressBook);
 
             // fetch all
-            log.info("app.models.AddressBook found with findAll():");
+            log.info("app.models.BuddyInfo found with findAll():");
             log.info("-------------------------------");
-            for (AddressBook ab : repository.findAll()) {
-                log.info(ab.toString());
+            for (BuddyInfo b : repository.findAll()) {
+                log.info(b.toString());
             }
             log.info("-------------------------------");
 
-            AddressBook a = repository.findById(1);
-            log.info("app.models.AddressBook found with findById(1):");
+            log.info("app.models.AddressBook found with findByName:");
             log.info("--------------------------------");
-            log.info(a.toString());
+            for (BuddyInfo b : repository.findByName("buddy name")) {
+                log.info(b.toString());
+            }
+            log.info("--------------------------------");
+
+            log.info("app.models.AddressBook found with findByNumber:");
+            log.info("--------------------------------");
+            for (BuddyInfo b : repository.findByNumber("613934584")) {
+                log.info(b.toString());
+            }
             log.info("--------------------------------");
         };
     }
