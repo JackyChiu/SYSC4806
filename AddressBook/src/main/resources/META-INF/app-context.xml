@@ -2,9 +2,9 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
         "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-    <bean id="addressBookView" class="AddressBookView" init-method="init">
+    <bean id="addressBookView" class="app.AddressBookView" init-method="init">
         <property name="title">
-            <value>AddressBook</value>
+            <value>app.models.AddressBook</value>
         </property>
         <property name="listener">
             <ref bean="addressBookController"></ref>
@@ -16,17 +16,17 @@
             </list>
         </property>
     </bean>
-    <bean id="addressBookController" class="AddressBookController">
+    <bean id="addressBookController" class="app.AddressBookController">
         <property name="view">
             <ref bean="addressBookView"></ref>
         </property>
     </bean>
-    <bean id="addressBookMenu" class="AddressBookMenu" init-method="init">
+    <bean id="addressBookMenu" class="app.AddressBookMenu" init-method="init">
         <property name="listener">
             <ref bean="addressBookController"></ref>
         </property>
     </bean>
-    <bean id="buddyInfoMenu" class="BuddyInfoMenu" init-method="init">
+    <bean id="buddyInfoMenu" class="app.BuddyInfoMenu" init-method="init">
         <property name="listener">
             <ref bean="addressBookController"></ref>
         </property>

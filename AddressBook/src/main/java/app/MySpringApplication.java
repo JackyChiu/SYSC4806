@@ -1,3 +1,7 @@
+package app;
+
+import app.models.AddressBook;
+import app.models.BuddyInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -14,7 +18,7 @@ public class MySpringApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(AddressBookRepository repository) {
+    public CommandLineRunner demo(AddressBookRepository repository, BuddyInfoRepository respository2) {
         return (args) -> {
             AddressBook addressBook = new AddressBook();
             BuddyInfo b1 = new BuddyInfo("buddy name", "613934584");
@@ -27,11 +31,15 @@ public class MySpringApplication {
             AddressBook addressBook2 = new AddressBook();
             addressBook2.addBuddy(b1);
 
+            respository2.save(b1);
+            respository2.save(b2);
+            respository2.save(b3);
+
             repository.save(addressBook);
             repository.save(addressBook2);
 
             // fetch all
-            log.info("AddressBook found with findAll():");
+            log.info("app.models.AddressBook found with findAll():");
             log.info("-------------------------------");
             for (AddressBook ab : repository.findAll()) {
                 log.info(ab.toString());
@@ -39,7 +47,7 @@ public class MySpringApplication {
             log.info("-------------------------------");
 
             AddressBook a = repository.findById(1);
-            log.info("AddressBook found with findById(1):");
+            log.info("app.models.AddressBook found with findById(1):");
             log.info("--------------------------------");
             log.info(a.toString());
             log.info("--------------------------------");

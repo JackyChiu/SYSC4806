@@ -1,17 +1,18 @@
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+package app.models;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
-public class AddressBook {
+public class AddressBook implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
+    @OneToMany
     private Map<String, BuddyInfo> buddies;
 
-    AddressBook() {
+    public AddressBook() {
         this.buddies = new HashMap<String, BuddyInfo>();
     }
 
