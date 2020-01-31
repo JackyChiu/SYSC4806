@@ -7,17 +7,7 @@
 <body>
 <h1>AddressBook</h1>
 <table>
-    <thead>
-    <tr>
-        <th> Address Books </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${addressBooks.isEmpty()}">
-        <td colspan="2"> No Address Books Available </td>
-    </tr>
-    <tr th:each="addressbook : ${addressBooks}">
-        <table>
+
             <thead>
             <tr>
                 <th> First Name </th>
@@ -25,17 +15,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:if="${addressbook.getBuddies().isEmpty()}">
+            <tr th:if="${addressBook.getBuddies().isEmpty()}">
                 <td colspan="2"> No buddies Available </td>
             </tr>
-            <tr th:each="buddy : ${addressbook.getBuddies()}">
+            <tr th:each="buddy : ${addressBook.getBuddies()}">
                 <td><span th:text="${buddy.getName()}"> Name </span></td>
                 <td><span th:text="${buddy.getNumber()}"> Number </span></td>
             </tr>
             </tbody>
-        </table>
-    </tr>
-    </tbody>
 </table>
 </body>
 </html>

@@ -4,6 +4,7 @@ import app.models.AddressBook;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -16,9 +17,9 @@ public class AddressBookController {
     }
 
     @GetMapping("/addressBook")
-    public String addressBook(Model model) {
-        Iterable<AddressBook> addressBooks = this.addressBookRepository.findAll();
-        model.addAttribute("addressBooks", addressBooks);
+    public String addressBook(@RequestParam("id") Integer id, Model model) {
+        AddressBook addressBook = this.addressBookRepository.findById(id);
+        model.addAttribute("addressBook", addressBook);
         return "addressBook";
     }
 }

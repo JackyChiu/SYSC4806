@@ -35,6 +35,13 @@ public class MySpringApplication {
             repository2.save(addressBook);
 
             // fetch all
+            log.info("app.models.AddressBook found with findAll():");
+            log.info("-------------------------------");
+            for (AddressBook a : repository2.findAll()) {
+                log.info(a.getId().toString());
+            }
+            log.info("-------------------------------");
+
             log.info("app.models.BuddyInfo found with findAll():");
             log.info("-------------------------------");
             for (BuddyInfo b : repository.findAll()) {
