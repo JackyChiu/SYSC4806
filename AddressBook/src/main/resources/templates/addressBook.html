@@ -13,16 +13,15 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:if="${addressbooks.empty}">
+    <tr th:if="${addressBooks.isEmpty()}">
         <td colspan="2"> No Address Books Available </td>
     </tr>
-    <tr th:each="addressbook : ${addressbooks}">
+    <tr th:each="addressbook : ${addressBooks}">
         <table>
             <thead>
             <tr>
                 <th> First Name </th>
-                <th> Last Name </th>
-                <th> Email </th>
+                <th> Number </th>
             </tr>
             </thead>
             <tbody>
