@@ -10,4 +10,6 @@ public interface BuddyInfoRepository extends CrudRepository<BuddyInfo, Long> {
     BuddyInfo findById(Integer id);
     List<BuddyInfo> findByName(String name);
     List<BuddyInfo> findByNumber(String number);
+
+    void deleteById(Integer id);
 }

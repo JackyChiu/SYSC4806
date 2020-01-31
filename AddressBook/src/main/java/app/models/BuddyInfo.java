@@ -1,5 +1,8 @@
 package app.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -10,6 +13,7 @@ public class BuddyInfo implements Serializable {
     private Integer id;
     private String name;
     private String number;
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
     private AddressBook addressBook;
 

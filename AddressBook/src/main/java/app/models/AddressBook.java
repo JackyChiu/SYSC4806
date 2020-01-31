@@ -1,5 +1,8 @@
 package app.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -9,6 +12,7 @@ public class AddressBook implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
+    @JsonManagedReference
     @OneToMany(mappedBy = "addressBook", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Map<String, BuddyInfo> buddies;
 
@@ -30,6 +34,7 @@ public class AddressBook implements Serializable {
     }
 
     public void addBuddy(BuddyInfo b) {
+        b.setAddressBook(this);
         this.buddies.put(b.getName(), b);
     }
 

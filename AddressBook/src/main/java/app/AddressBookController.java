@@ -3,10 +3,7 @@ package app;
 import app.models.AddressBook;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class AddressBookController {
@@ -17,9 +14,17 @@ public class AddressBookController {
     }
 
     @GetMapping("/addressBook")
-    public String addressBook(@RequestParam("id") Integer id, Model model) {
+    public String getAddressBook(@RequestParam("id") Integer id, Model model) {
         AddressBook addressBook = this.addressBookRepository.findById(id);
         model.addAttribute("addressBook", addressBook);
         return "addressBook";
+    }
+
+    @ResponseBody
+    @PostMapping(value = "/newAddressBook", produces = "application/json")
+    public AddressBook newAddressBook() {
+        AddressBook a = new AddressBook();
+        this.addressBookRepository.save(a);
+        return a;
     }
 }
