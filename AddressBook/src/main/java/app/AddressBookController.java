@@ -21,7 +21,6 @@ public class AddressBookController {
     @ResponseBody
     @GetMapping("/addressBook")
     public AddressBook getAddressBook(@RequestParam("id") Integer id) {
-        System.out.println("hit me i dare u");
         AddressBook addressBook = this.addressBookRepository.findById(id);
         return addressBook;
     }
