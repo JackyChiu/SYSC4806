@@ -24,13 +24,12 @@ public class BuddyInfoController {
     @PostMapping(value = "/newBuddyInfo", produces = "application/json")
     public BuddyInfo newBuddyInfo(@RequestParam("addressBookId") Integer addressBookId, @RequestParam("name") String name, @RequestParam("number") String number, Model model) {
         AddressBook addressBook = this.addressBookRepository.findById(addressBookId);
+        System.out.println(addressBook);
         BuddyInfo buddy = new BuddyInfo(name, number);
         this.buddyInfoRepository.save(buddy);
 
         addressBook.addBuddy(buddy);
         this.addressBookRepository.save(addressBook);
-
-
         return buddy;
     }
 

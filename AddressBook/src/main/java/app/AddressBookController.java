@@ -13,17 +13,24 @@ public class AddressBookController {
         this.addressBookRepository = addressBookRepository;
     }
 
+    @GetMapping("/")
+    public String rootApplication() {
+        return "application";
+    }
+
+    @ResponseBody
     @GetMapping("/addressBook")
-    public String getAddressBook(@RequestParam("id") Integer id, Model model) {
+    public AddressBook getAddressBook(@RequestParam("id") Integer id) {
+        System.out.println("hit me i dare u");
         AddressBook addressBook = this.addressBookRepository.findById(id);
-        model.addAttribute("addressBook", addressBook);
-        return "addressBook";
+        return addressBook;
     }
 
     @ResponseBody
     @PostMapping(value = "/newAddressBook", produces = "application/json")
-    public AddressBook newAddressBook() {
+    public AddressBook newAddressBook(@RequestParam("id") Integer id) {
         AddressBook a = new AddressBook();
+        a.setId(id);
         this.addressBookRepository.save(a);
         return a;
     }
